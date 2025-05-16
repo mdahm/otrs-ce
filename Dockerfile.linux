@@ -1,0 +1,15 @@
+FROM ubuntu:25.10
+
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Update and install
+RUN apt update && apt install -y apache2 cpanminus libapache2-mod-perl2 libdbd-mysql-perl libtimedate-perl \
+        libnet-dns-perl libnet-ldap-perl libio-socket-ssl-perl libpdf-api2-perl libsoap-lite-perl \
+        libtext-csv-xs-perl libjson-xs-perl libapache-dbi-perl libxml-libxml-perl libxml-libxslt-perl \
+        libyaml-perl libarchive-zip-perl libcrypt-eksblowfish-perl libencode-hanextra-perl \
+        libmail-imapclient-perl libtemplate-perl libdatetime-perl libmoo-perl bash-completion \
+        libyaml-libyaml-perl libjavascript-minifier-xs-perl libcss-minifier-xs-perl libauthen-sasl-perl \
+        libauthen-ntlm-perl libdata-uuid-perl libical-parser-perl curl cron && apt clean
+
+CMD ["/bin/sleep",  "1000"]
